@@ -1,3 +1,4 @@
+var fortune = require('./lib/fortune.js');
 var express = require('express');
 var app = express();
 
@@ -10,23 +11,13 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3009);
 
-var fortunes = [
-	"Conquer your fears or they will conquer you.",
-	"Rivers need springs.",
-	"Do not fear what you don't know.",
-	"You will have a pleasnt surprise.",
-	"Whenever possible, keep it simple."
-]; 
 
 app.get('/', function(req, res){
 	res.render('home');
 });
 
-app.get('/about', function(req, res){
-	var m = Math.floor(Math.random() * fortunes.length);	
-	var randomFortune = fortunes[m];
-	console.log(randomFortune);
-	res.render('about', {fortune:randomFortune});
+app.get('/about', function(req, res){	
+	res.render('about', {fortune: fortune.getFortune()});
 });
 
 // roleType
