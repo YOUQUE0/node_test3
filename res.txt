@@ -1,0 +1,61 @@
+res.status(code)
+
+res.set(name, value);
+
+res.cookies(name, value, [options])
+
+res.clearCookie(name, [options])
+
+res.redirect([status], url)
+
+res.send(body)
+
+res.send(status, body)
+
+res.json(json)
+
+res.json(status, json)
+
+res.type(type)
+
+res.format(object)
+
+res.attachment([filename])
+
+res.download(path, [filename], [callback])
+
+res.sendFile(path, [option], [callback])
+
+res.links(links)
+
+res.locals
+
+res.render(view, [locals], callback)
+
+====================================================================================================
+
+app.get('/about', function (req, res) {
+	res.render('about');
+});
+
+app.get('/error', function (req, res) {
+	res.status(500);
+	res.render('error');
+});
+
+app.get('/error', function (req, res) {
+	res.status(500).render('error');
+});
+
+app.get('/greeting', function (req, res) {
+	res.render('about', {
+		message: 'welcome',
+		style: req.query.style,
+		userid: req.cookies.userid,
+		username: req.session.username
+	});
+});
+
+app.get('/no-layout', function (req, res) {
+	res.render('no-layout', {layout: null});
+});
